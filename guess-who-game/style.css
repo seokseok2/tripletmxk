@@ -1,0 +1,185 @@
+body {
+  font-family: "Jua", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(135deg, #87ceeb, #00bfff);
+  overflow: hidden;
+  position: relative;
+}
+
+/* 물결 애니메이션 */
+@keyframes wave {
+  0% { background-position: 0 0; }
+  100% { background-position: 100% 0; }
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://www.transparenttextures.com/patterns/waves.png');
+  opacity: 0.1;
+  z-index: 1;
+  animation: wave 15s linear infinite;
+}
+
+.game-container {
+  text-align: center;
+  background: rgba(255, 255, 224, 0.95); /* 밝은 노란색 (스폰지밥 느낌) */
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  max-width: 450px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.game-container:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+  font-size: 32px;
+  color: #ffcc00;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* 제목 빛나는 효과 제거 */
+}
+
+select, button, input[type="text"] {
+  font-size: 18px;
+  padding: 12px;
+  margin: 12px 0;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  width: 100%;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  background: linear-gradient(135deg, #ffa500, #ff4500);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 버튼에 빛나는 효과 추가 */
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: skewX(-30deg);
+  transition: left 0.5s ease;
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #ff4500, #ffa500);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+#person-image {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-top: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+#person-image:hover {
+  transform: scale(1.05) rotate(3deg);
+}
+
+#timer {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ff6347;
+  margin-top: 10px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #00bfff;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* 바다 거품 애니메이션 */
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  animation: float 5s infinite ease-in-out;
+  opacity: 0.8;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100vh); }
+}
+
+button {
+  font-size: 18px;
+  padding: 12px;
+  margin: 12px 5px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: linear-gradient(135deg, #ffa500, #ff4500);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #ff4500, #ffa500);
+  transform: translateY(-5px);
+}
+
+.photo-credit {
+  position: fixed; /* 화면에 고정 */
+  bottom: 10px; /* 아래쪽에서 10px 떨어짐 */
+  right: 10px; /* 오른쪽에서 10px 떨어짐 */
+  font-size: 12px; /* 글자 크기 */
+  color: rgba(0, 0, 0, 0.7); /* 반투명 검정색 글자 */
+  background-color: rgba(255, 255, 255, 0.8); /* 흰색 배경에 약간 투명 */
+  padding: 5px 10px; /* 텍스트 주변 여백 */
+  border-radius: 5px; /* 둥근 모서리 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 약간의 그림자 */
+  z-index: 1000; /* 다른 요소 위에 표시되도록 설정 */
+  pointer-events: none; /* 클릭 방지 (선택사항) */
+}
